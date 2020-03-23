@@ -1,0 +1,61 @@
+{
+  "name": "<PACKAGE_NAME_FULL>",
+  "version": "0.0.1",
+  "description": "",
+  "license": "MPL",
+  "scripts": {
+    "start": "esy x <PACKAGE_NAME_UPPER_CAMEL>App.exe",
+    "test": "esy x Test<PACKAGE_NAME_UPPER_CAMEL>.exe",
+    "pesy": "bash -c 'env PESY_MODE=update pesy'"
+  },
+  "dependencies": {
+    "@opam/dune": ">=1.11",
+    "@esy-ocaml/reason": "*",
+    "ocaml": "~4.8.1000"
+  },
+  "devDependencies": {
+    "ocaml": "~4.8.1000",
+    "refmterr": "*",
+    "pesy": "*",
+    "@opam/merlin": "*",
+    "@reason-native/rely": "*"
+  },
+  "esy": {
+    "build": "dune build -p <PACKAGE_NAME>",
+    "buildDev": "pesy",
+    "release": {
+      "releasedBinaries": [
+        "<PACKAGE_NAME_UPPER_CAMEL>App.exe"
+      ]
+    }
+  },
+  "buildDirs": {
+    "lib": {
+      "namespace": "Lib",
+      "name": "<PACKAGE_NAME>.lib",
+      "require": []
+    },
+    "bin": {
+      "main": "<PACKAGE_NAME_UPPER_CAMEL>App",
+      "name": "<PACKAGE_NAME_UPPER_CAMEL>App.exe",
+      "require": [
+        "<PACKAGE_NAME>.lib"
+      ]
+    },
+    "test": {
+      "namespace": "Test",
+      "name": "<PACKAGE_NAME>.test",
+      "require": [
+        "<PACKAGE_NAME>.lib",
+        "rely.lib"
+      ]
+    },
+    "test-runner": {
+      "main": "Test<PACKAGE_NAME_UPPER_CAMEL>",
+      "name": "Test<PACKAGE_NAME_UPPER_CAMEL>.exe",
+      "require": [
+        "<PACKAGE_NAME>.test"
+      ]
+    }
+  }
+}
