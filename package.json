@@ -2,7 +2,7 @@
   "name": "<PACKAGE_NAME_FULL>",
   "version": "0.0.1",
   "description": "",
-  "license": "MPL",
+  "license": "MPL-2.0",
   "scripts": {
     "start": "esy x <PACKAGE_NAME_UPPER_CAMEL>App.exe",
     "test": "esy x Test<PACKAGE_NAME_UPPER_CAMEL>.exe",
@@ -22,7 +22,10 @@
   },
   "esy": {
     "build": "dune build -p <PACKAGE_NAME>",
-    "buildDev": "pesy",
+    "buildDev": "pesy build",
+    "buildEnv": {
+      "ODOC_SYNTAX": "re"
+    },
     "release": {
       "releasedBinaries": [
         "<PACKAGE_NAME_UPPER_CAMEL>App.exe"
